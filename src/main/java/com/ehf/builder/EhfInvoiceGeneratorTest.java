@@ -46,7 +46,7 @@ public class EhfInvoiceGeneratorTest {
 
         // --- Supplier Information (AccountingSupplierParty) ---
         // Norwegian Organization Numbers are strictly 9 digits.
-        dto.setCompanyOrganizationNo("917338566");
+        dto.setCompanyOrganizationNo("336880697");
         dto.setCompanyName("Test, Autorisert regnskapsførerselskap / Godkjent revisjonsselskap");
         dto.setCompanyAddress("Test 2");
         dto.setCompanyTown("Test");
@@ -61,16 +61,16 @@ public class EhfInvoiceGeneratorTest {
         dto.setCompanyEmail("test@gmai.com");
 
         // --- Customer Information (AccountingCustomerParty) ---
-        dto.setCustomerOrgCode("912211851");
-        dto.setCustomerName("Auto Salongen AS");
-        dto.setCustomerAddress("Vettevegen 11A");
+        dto.setCustomerOrgCode("881086591");
+        dto.setCustomerName("Test AS");
+        dto.setCustomerAddress("Test 11A");
         dto.setCustomerTown("Test");
         dto.setCustomerPostCode("2068");
         dto.setCustomerCountryCode("NO");
 
         // --- Delivery Information ---
         dto.setDeliveryDate(LocalDate.parse("2023-08-14"));
-        dto.setDeliveryAddress("Vettevegen 11A");
+        dto.setDeliveryAddress("Test 11A");
         dto.setDeliveryTown("Test");
         dto.setDeliveryPostcode("2068");
         dto.setDeliveryCountryCode("NO");
@@ -78,8 +78,8 @@ public class EhfInvoiceGeneratorTest {
         // --- Payment Means ---
         // KID (Kundeidentifikasjonsnummer) is critical for OCR-based automated bank reconciliation in Norway.
         dto.setKid("01010300130836");
-        dto.setBankAccountNo("15037715716");
-        dto.setBankAccountNoIban("NO1815037715716");
+        dto.setBankAccountNo("18003195402");
+        dto.setBankAccountNoIban("NO1818003195402");
         dto.setBankAccountNoBic("DNBANOKKXXX");
 
         // --- Document Level Tax Totals ---
