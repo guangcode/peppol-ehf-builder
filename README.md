@@ -7,8 +7,6 @@
 
 A lightweight, high-performance, and strictly compliant Java builder for **PEPPOL BIS Billing 3.0** and **Norwegian EHF 3.0** e-invoicing. 
 
-
-
 Designed for enterprise B2B/B2G integrations, this library bridges the gap between local Norwegian accounting systems (e.g., Tripletex, PowerOffice, Fiken) and the complex European EN 16931 XML standard.
 
 ## 🚀 Why This Project?
@@ -70,3 +68,25 @@ public class InvoiceDemo {
         System.out.println(xmlPayload);
     }
 }
+```
+
+*(For a complete, robust example including line-level discounts and PDF attachment embedding, check the `EhfInvoiceGeneratorTest.java` in the source code).*
+
+## 🛡️ Business Rules (Schematron) Handled
+
+This library proactively designs around the most common reasons PEPPOL Access Points reject invoices:
+
+* **BR-CO-17**: Ensures tax subtotals are strictly aggregated by VAT category and rate.
+* **BR-LIN-04**: Validates that invoice line net amounts strictly match the `(Price * Qty) - Discount` formula.
+* **BR-CO-26**: Injects the mandatory `Foretaksregisteret` scheme for Norwegian AS/ASA entities.
+
+## 👨‍💻 About the Author
+
+**Gus Hu** ([@guangcode](https://github.com/guangcode))  
+12+ YOE Java Architect | Deep expertise in Enterprise Architecture, Netty & Complex B2B Integrations.  
+
+*Open to global remote opportunities and cross-border tech collaborations.*
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
