@@ -54,7 +54,7 @@ public class EhfInvoiceGeneratorTest {
         dto.setCompanyCountryCode("NO");
 
         // Triggers the "NO...MVA" tax scheme logic in the builder
-        dto.setIsVatRegistered(true);
+        dto.setSupplierIsVatRegistered(true);
         dto.setCompanyLegalName("Test");
         dto.setContactPerson("Test");
         dto.setCompanyPhone("91175475");
@@ -62,6 +62,7 @@ public class EhfInvoiceGeneratorTest {
 
         // --- Customer Information (AccountingCustomerParty) ---
         dto.setCustomerOrgCode("881086591");
+        dto.setCustomerIsVatRegistered(true);
         dto.setCustomerName("Test AS");
         dto.setCustomerAddress("Test 11A");
         dto.setCustomerTown("Test");

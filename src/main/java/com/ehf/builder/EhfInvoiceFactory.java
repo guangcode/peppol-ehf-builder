@@ -158,7 +158,7 @@ public class EhfInvoiceFactory {
         party.setEndpointID(endpointIDType);
 
         PartyNameType partyNameType = new PartyNameType();
-        partyNameType.setName(dto.getCompanyName().trim());
+        partyNameType.setName(dto.getCompanyName());
         party.setPartyName(List.of(partyNameType));
 
         // Supplier Postal Address mapping
@@ -191,7 +191,7 @@ public class EhfInvoiceFactory {
         List<PartyTaxSchemeType> taxSchemes = new ArrayList<>();
 
         // If the supplier is VAT registered, Norway requires a specific format: "NO" + OrgNumber + "MVA".
-        if (Boolean.TRUE.equals(dto.getIsVatRegistered())) {
+        if (Boolean.TRUE.equals(dto.getSupplierIsVatRegistered())) {
             PartyTaxSchemeType vatScheme = new PartyTaxSchemeType();
             TaxSchemeType taxSchemeType = new TaxSchemeType();
             IDType idType = new IDType();
@@ -227,7 +227,7 @@ public class EhfInvoiceFactory {
         // Legal Entity Information mapping
         PartyLegalEntityType legalEntity = new PartyLegalEntityType();
         RegistrationNameType registrationNameType = new RegistrationNameType();
-        registrationNameType.setValue(dto.getCompanyLegalName().trim());
+        registrationNameType.setValue(dto.getCompanyLegalName());
         legalEntity.setRegistrationName(registrationNameType);
 
         CompanyIDType legalCompanyIDType = new CompanyIDType();
@@ -285,7 +285,7 @@ public class EhfInvoiceFactory {
         party.setPartyIdentification(List.of(partyIdent));
 
         PartyNameType partyNameType = new PartyNameType();
-        partyNameType.setName(dto.getCustomerName().trim());
+        partyNameType.setName(dto.getCustomerName());
         party.setPartyName(List.of(partyNameType));
 
         // Customer Postal Address mapping
@@ -324,14 +324,14 @@ public class EhfInvoiceFactory {
         vatScheme.setTaxScheme(taxSchemeType);
 
         CompanyIDType companyIDType = new CompanyIDType();
-        companyIDType.setValue("NO" + dto.getCustomerOrgCode() + "MVA");
+        companyIDType.setValue("NO" + dto.getCustomerOrgCode() + (Boolean.TRUE.equals(dto.getCustomerIsVatRegistered()) ? "MVA" : ""));
         vatScheme.setCompanyID(companyIDType);
         party.setPartyTaxScheme(List.of(vatScheme));
 
         // Customer Legal Entity mapping
         PartyLegalEntityType legalEntity = new PartyLegalEntityType();
         RegistrationNameType registrationNameType = new RegistrationNameType();
-        registrationNameType.setValue(dto.getCustomerName().trim());
+        registrationNameType.setValue(dto.getCustomerName());
         legalEntity.setRegistrationName(registrationNameType);
 
         CompanyIDType legalCompanyIDType = new CompanyIDType();
@@ -493,8 +493,8 @@ public class EhfInvoiceFactory {
 
                 TaxSchemeType taxSchemeType = new TaxSchemeType();
                 IDType schemeId = new IDType();
-                schemeId.setValue(SCHEME_VAT);
-                schemeId.setSchemeAgencyID(SCHEME_VAT_NO);
+                schemeId.setValue(SCHEME_VAT); 
+                schemeId.setSchemeID(SCHEME_VAT_NO);
                 taxSchemeType.setID(schemeId);
                 category.setTaxScheme(taxSchemeType);
 
@@ -609,7 +609,7 @@ public class EhfInvoiceFactory {
                 allowance.setAllowanceChargeReason(List.of(reasonType));
 
                 MultiplierFactorNumericType multiplierType = new MultiplierFactorNumericType();
-                multiplierType.setValue(productLine.getDisc());
+                multiplierType.setValue(productLine.getDisc()); 
                 allowance.setMultiplierFactorNumeric(multiplierType);
 
                 // Base amount against which the discount is applied
@@ -660,7 +660,7 @@ public class EhfInvoiceFactory {
             TaxSchemeType taxSchemeType = new TaxSchemeType();
             IDType schemeId = new IDType();
             schemeId.setValue(SCHEME_VAT);
-            schemeId.setSchemeAgencyID(SCHEME_VAT_NO);
+            schemeId.setSchemeID(SCHEME_VAT_NO);
             taxSchemeType.setID(schemeId);
             taxCategory.setTaxScheme(taxSchemeType);
 
